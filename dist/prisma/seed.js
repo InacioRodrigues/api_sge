@@ -7,16 +7,14 @@ async function main() {
         data: {
             email: 'admin@example.com',
             password: process.env.ADMIN_PASSWORD,
-            role: 'admin',
-            name: 'Administrador',
+            isAdmin: true
         },
     });
     await prisma.user.create({
         data: {
             email: 'secretary@example.com',
             password: process.env.SECRETARY_PASSWORD,
-            role: 'secretary',
-            name: 'Secretário',
+            isAdmin: false,
         },
     });
     console.log('Seeding completed');
