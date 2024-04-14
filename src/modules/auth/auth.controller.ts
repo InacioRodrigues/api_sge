@@ -52,7 +52,7 @@ async login(@Request() req, @Body('email') email: string, @Body('password') pass
   @Put(':id')
   @UseInterceptors(FileInterceptor('file'))
   async updateUser(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
@@ -66,7 +66,7 @@ async login(@Request() req, @Body('email') email: string, @Body('password') pass
 
 
   @Delete(':id')
-  async deleteUser(@Param('id') id: number) {
+  async deleteUser(@Param('id') id: string) {
     try {
       const deletedUser = await this.authService.deleteUser(id);
       if (!deletedUser) {

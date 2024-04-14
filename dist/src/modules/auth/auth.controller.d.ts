@@ -17,7 +17,7 @@ export declare class AuthController {
         token: string;
         message: string;
     }>;
-    updateUser(id: number, email: string, password: string): Promise<{
+    updateUser(id: string, email: string, password: string): Promise<{
         user: {
             id: string;
             email: string;
@@ -26,12 +26,22 @@ export declare class AuthController {
         };
         message: string;
     }>;
-    deleteUser(id: number): Promise<{
-        user: User;
+    deleteUser(id: string): Promise<{
+        user: {
+            id: string;
+            email: string;
+            password: string;
+            isAdmin: boolean;
+        };
         message: string;
     }>;
     findAllUsers(): Promise<{
-        users: User[];
+        users: {
+            id: string;
+            email: string;
+            password: string;
+            isAdmin: boolean;
+        }[];
     }>;
     register(email: string, password: string): Promise<{
         user: {

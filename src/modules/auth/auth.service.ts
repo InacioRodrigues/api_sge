@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from 'src/database/prisma.servce';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import * as bcrypt from 'bcrypt'
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -71,7 +71,7 @@ export class AuthService {
   }
 
   
-  async validateUserById(id: number): Promise<User | null> {
+  async validateUserById(id: string): Promise<User | null> {
     try {
       return this.prisma.user.findUnique({
         where: { id },
@@ -81,7 +81,7 @@ export class AuthService {
     }
   }z
 
-  async updateUser(id: number, email: string, password: string) {
+  async updateUser(id: string, email: string, password: string) {
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -99,7 +99,7 @@ export class AuthService {
   }
 
   
-  async deleteUser(id: number): Promise<User> {
+  async deleteUser(id: string): Promise<User> {
     try {
       return this.prisma.user.delete({ where: { id } });
     } catch (error) {
