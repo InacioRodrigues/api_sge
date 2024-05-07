@@ -8,8 +8,43 @@ generator client {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  email    String  @unique
+  id       String @id @default(uuid())
+  isAdmin  Boolean @default(false)
+  email    String @unique
   password String
-  isAdmin  Boolean @default(false) 
+}
+
+model Student {
+  id            String         @id @default(uuid())
+  name          String
+  birthDate     DateTime
+  course        String
+  studentEmail  String         @unique
+  registrations Registration[]
+  tuitions      Tuition[]
+}
+
+model Class {
+  id            String         @id @default(uuid())
+  className     String
+  course        String
+  academicYear  Int
+  registrations Registration[]
+}
+
+model Registration {
+  id               String   @id @default(uuid())
+  studentId        String
+  classId          String
+  registrationDate DateTime
+  student          Student  @relation(fields: [studentId], references: [id])
+  class            Class    @relation(fields: [classId], references: [id])
+}
+
+model Tuition {
+  id          String   @id @default(uuid())
+  studentId   String
+  amount      Float
+  paymentDate DateTime
+  student     Student  @relation(fields: [studentId], references: [id])
 }
