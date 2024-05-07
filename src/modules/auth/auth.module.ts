@@ -6,12 +6,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
 
+
 @Module({
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: 'minhachavesecreta',
-      signOptions: { expiresIn: '1h' },
+      secret: process.env.SECRET,
+      signOptions: { expiresIn: '1h' },  
     }),
   ], 
   controllers: [AuthController],
