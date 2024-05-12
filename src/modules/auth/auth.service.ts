@@ -1,5 +1,5 @@
 import { Injectable, BadRequestException, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { PrismaService } from 'src/database/prisma.servce';
+import { PrismaService } from 'src/database/prisma.service';
 import { Prisma, User } from '@prisma/client';
 import * as bcrypt from 'bcrypt'
 import { diskStorage } from 'multer';

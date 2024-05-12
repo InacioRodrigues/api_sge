@@ -10,9 +10,9 @@ export declare class AuthController {
     login(req: any, email: string, password: string): Promise<{
         user: {
             id: string;
+            isAdmin: boolean;
             email: string;
             password: string;
-            isAdmin: boolean;
         };
         token: string;
         message: string;
@@ -20,35 +20,35 @@ export declare class AuthController {
     updateUser(id: string, email: string, password: string): Promise<{
         user: {
             id: string;
+            isAdmin: boolean;
             email: string;
             password: string;
-            isAdmin: boolean;
         };
         message: string;
     }>;
     deleteUser(id: string): Promise<{
         user: {
             id: string;
+            isAdmin: boolean;
             email: string;
             password: string;
-            isAdmin: boolean;
         };
         message: string;
     }>;
     findAllUsers(): Promise<{
         users: {
             id: string;
+            isAdmin: boolean;
             email: string;
             password: string;
-            isAdmin: boolean;
         }[];
     }>;
     register(email: string, password: string): Promise<{
         user: {
             id: string;
+            isAdmin: boolean;
             email: string;
             password: string;
-            isAdmin: boolean;
         };
         message: string;
     }>;

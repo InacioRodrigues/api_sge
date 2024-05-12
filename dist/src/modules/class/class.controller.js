@@ -16,25 +16,25 @@ exports.ClassController = void 0;
 const common_1 = require("@nestjs/common");
 const class_service_1 = require("./class.service");
 const create_class_dto_1 = require("./dto/create-class.dto");
-const update_class_dto_1 = require("./dto/update-class.dto");
 let ClassController = class ClassController {
     constructor(classService) {
         this.classService = classService;
     }
-    create(createClassDto) {
-        return this.classService.create(createClassDto);
+    create(CreateClassDto) {
+        return this.classService.create(CreateClassDto);
     }
     findAll() {
         return this.classService.findAll();
     }
     findOne(id) {
-        return this.classService.findOne(+id);
+        return this.classService.findOne(id);
     }
-    update(id, updateClassDto) {
-        return this.classService.update(+id, updateClassDto);
+    update(id, CreateClassDto) {
+        return this.classService.update(id, CreateClassDto);
     }
-    remove(id) {
-        return this.classService.remove(+id);
+    async remove(id) {
+        const deletedClass = await this.classService.remove(id);
+        return { message: `Class com ID ${id} foi excluída com sucesso.`, deletedClass };
     }
 };
 exports.ClassController = ClassController;
@@ -59,11 +59,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Patch)(':id'),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_class_dto_1.UpdateClassDto]),
+    __metadata("design:paramtypes", [String, create_class_dto_1.CreateClassDto]),
     __metadata("design:returntype", void 0)
 ], ClassController.prototype, "update", null);
 __decorate([
@@ -71,7 +71,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ClassController.prototype, "remove", null);
 exports.ClassController = ClassController = __decorate([
     (0, common_1.Controller)('class'),

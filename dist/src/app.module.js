@@ -14,7 +14,7 @@ const student_module_1 = require("./modules/student/student.module");
 const class_module_1 = require("./modules/class/class.module");
 const matriculation_module_1 = require("./modules/matriculation/matriculation.module");
 const auth_module_1 = require("./modules/auth/auth.module");
-const prisma_servce_1 = require("./database/prisma.servce");
+const prisma_service_1 = require("./database/prisma.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -22,7 +22,7 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [student_module_1.StudentModule, class_module_1.ClassModule, matriculation_module_1.MatriculationModule, auth_module_1.AuthModule],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, prisma_servce_1.PrismaService],
+        providers: [app_service_1.AppService, prisma_service_1.PrismaService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

@@ -1,9 +1,42 @@
 import { CreateClassDto } from './dto/create-class.dto';
-import { UpdateClassDto } from './dto/update-class.dto';
+import { PrismaService } from 'src/database/prisma.service';
 export declare class ClassService {
-    create(createClassDto: CreateClassDto): string;
-    findAll(): string;
-    findOne(id: number): string;
-    update(id: number, updateClassDto: UpdateClassDto): string;
-    remove(id: number): string;
+    private prisma;
+    constructor(prisma: PrismaService);
+    remove(id: string): Promise<{
+        id: string;
+        name: string;
+        course: string;
+        academicYear: number;
+    }>;
+    create(data: CreateClassDto): Promise<{
+        id: string;
+        name: string;
+        course: string;
+        academicYear: number;
+    }>;
+    update(id: string, data: CreateClassDto): Promise<{
+        id: string;
+        name: string;
+        course: string;
+        academicYear: number;
+    }>;
+    delete(id: string): Promise<{
+        id: string;
+        name: string;
+        course: string;
+        academicYear: number;
+    }>;
+    findOne(id: string): Promise<{
+        id: string;
+        name: string;
+        course: string;
+        academicYear: number;
+    }>;
+    findAll(): Promise<{
+        id: string;
+        name: string;
+        course: string;
+        academicYear: number;
+    }[]>;
 }
